@@ -5,6 +5,7 @@ from django.db import models
 from django.db.models import Field
 from django.utils.functional import cached_property
 from prices import Money, TaxedMoney
+from functools import total_ordering
 
 from . import forms
 from .validators import MoneyPrecisionValidator
@@ -71,6 +72,7 @@ class MoneyField(models.DecimalField):
         return name, path, args, kwargs
 
 
+@total_ordering
 class TaxedMoneyField(object):
 
     description = (
